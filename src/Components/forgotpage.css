@@ -1,0 +1,87 @@
+.fp-container {
+  min-height: 80vh;
+}
+.fp-form-container {
+  background: #ff416c;
+  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #ffffff;
+  flex-grow: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.25rem;
+  border-radius: 0.75rem;
+}
+
+.fp-email-input,
+.fp-password-input {
+  background-color: #eee;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0;
+  min-width: 40vw;
+  border-radius: 0.75rem;
+  border: 2px solid #fff;
+}
+h2 {
+  text-align: center;
+  font-weight: 700;
+}
+.fp-email-input:active,
+.fp-email-input:focus,
+.fp-password-input:active,
+.fp-password-input:focus {
+  border: 2px solid #111;
+  outline: none;
+}
+/* .input-box {
+  display: flex;
+  width: 100%;
+} */
+.fp-password-input {
+  font-weight: bold;
+}
+::placeholder {
+  font-weight: 400;
+  font-style: italic;
+  opacity: 1;
+}
+.fp-submit-btn {
+  border-radius: 1.25rem;
+  border: 1px solid #ff4b2b;
+  background-color: #fff;
+  color: #ff4b2b;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.75rem 2.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+.fp-submit-btn:hover {
+  color: white;
+  background-color: #fa3c1a;
+  border: 2px solid #111;
+}
+
+.fp-submit-btn:active {
+  transform: scale(0.95);
+}
+
+.fp-submit-btn:focus {
+  outline: none;
+}
+
+.fp-errors {
+  color: #fff;
+  font-size: 0.8rem;
+  text-align: center;
+}
+@media (max-width: 755px) {
+  .fp-form-container {
+    min-height: 40vh;
+    border-radius: 0 0 0 0;
+  }
+}

@@ -1,0 +1,93 @@
+.sign-up-container {
+  min-height: 80vh;
+}
+.content-container-left {
+  background: #ff416c;
+  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #ffffff;
+  flex-grow: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.25rem;
+  border-radius: 0.75rem 0 0 0.75rem;
+}
+
+.input-container,
+.name-container {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  padding: 0.5rem 1rem;
+}
+
+.password-input {
+  background-color: #eee;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0;
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 2px solid #fff;
+}
+.email-input{
+  background-color: #eee;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0;
+  min-width: 100%;
+  border-radius: 0.75rem;
+  border: 2px solid #fff;
+}
+.firstname-input,
+.lastname-input {
+  background-color: #eee;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0;
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 2px solid #fff;
+}
+.email-input:active,
+.email-input:focus,
+.firstname-input:active,
+.firstname-input:focus,
+.lastname-input:active,
+.lastname-input:focus,
+.password-input:active,
+.password-input:focus {
+  border: 2px solid #111;
+  outline: none;
+}
+.input-box {
+  display: flex;
+  width: 100%;
+}
+.password-input {
+  font-weight: bold;
+}
+::placeholder {
+  font-weight: 400;
+  font-style: italic;
+  opacity: 1; /* Firefox */
+}
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  font-style: italic;
+  font-weight: 400;
+}
+
+@media (max-width: 755px) {
+  .content-container-left {
+    min-height: 40vh;
+    border-radius: 0 0 0 0;
+  }
+  .full-container {
+    border-radius: 0 0 0 0;
+  }
+  .signin-title {
+    font-weight: 600;
+    font-size: 2rem;
+  }
+}

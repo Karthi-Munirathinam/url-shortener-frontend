@@ -1,0 +1,146 @@
+.full-container {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.sign-in-container {
+  height: 100%;
+  min-height: 80vh;
+}
+.login-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fp-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.input-container {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  padding: 0.5rem 1rem;
+}
+.username-input,
+.password-input {
+  background-color: #eee;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem 0;
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 2px solid #fff;
+}
+.username-input:active,
+.username-input:focus,
+.password-input:active,
+.password-input:focus {
+  border: 2px solid #111;
+  outline: none;
+}
+/* .login-form {
+    padding: 1rem !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  } */
+.signin-title {
+  font-weight: 700;
+}
+.login-form-container {
+  padding: 1rem;
+}
+.fp-text {
+  color: black;
+}
+.fp-text:hover {
+  text-decoration: none;
+}
+.signin-btn,
+.sign-up-btn {
+  border-radius: 1.25rem;
+  border: 1px solid #ff4b2b;
+  background-color: #ff4b2b;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.75rem 2.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+.signin-btn:hover,
+.sign-up-btn:hover {
+  color: white;
+  background-color: #fa3c1a;
+}
+
+.signin-btn:active,
+.sign-up-btn:active {
+  transform: scale(0.95);
+}
+
+.signin-btn:focus,
+.sign-up-btn:focus {
+  outline: none;
+}
+.sign-in-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sign-up-btn {
+  background-color: transparent;
+  border-color: #ffffff;
+}
+.content-container {
+  background: #ff416c;
+  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #ffffff;
+  flex-grow: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.25rem;
+  border-radius: 0 0.75rem 0.75rem 0;
+}
+.content-right-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content-right-container h1 {
+  font-weight: 700;
+  text-align: center;
+}
+.content-right-container p {
+  text-align: center;
+}
+@media (max-width: 755px) {
+  .content-container {
+    min-height: 40vh;
+    border-radius: 0 0 0 0;
+  }
+  .full-container {
+    border-radius: 0 0 0 0;
+  }
+  .content-right-container h1 {
+    font-size: 2rem;
+  }
+}
+
+.errors {
+  color: red;
+  font-size: 0.8rem;
+  text-align: center;
+}
