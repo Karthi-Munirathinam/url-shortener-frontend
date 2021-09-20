@@ -12,6 +12,7 @@ import Forgotpage from './Components/Forgotpage';
 import { useState } from 'react';
 import Forgotpageresetpassword from './Components/Forgotpageresetpassword';
 import Mainpage from './Components/Mainpage';
+import UrlShortener from './Components/UrlShortener';
 
 function App() {
   const [loggedin, setLoggedIn] = useState(false);
@@ -36,6 +37,9 @@ function App() {
         </Route>
         <Route path="/mainpage" exact>
           <Mainpage />
+        </Route>
+        <Route path="/shortener" exact>
+          <UrlShortener />
         </Route>
         <Route path="/" exact>
           <Homepage />

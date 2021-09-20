@@ -124,7 +124,7 @@ function Appbar({ loggedIn, setlogin }) {
                 <Toolbar>
                     <Link to="/" className={`${classes.link}  text-decoration-none`}>
                         <Typography variant="h5" className="brand-text" noWrap>
-                            Brand FP
+                            URL Shortener
                         </Typography>
                     </Link>
                     <div className={classes.grow} />
