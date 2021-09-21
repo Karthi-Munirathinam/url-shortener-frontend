@@ -13,18 +13,18 @@ import { useState } from 'react';
 import Forgotpageresetpassword from './Components/Forgotpageresetpassword';
 import Mainpage from './Components/Mainpage';
 import UrlShortener from './Components/UrlShortener';
+import Shorttable from './Components/Shorttable';
+import Dashboard from './Components/Dashboard';
 
 function App() {
   const [loggedin, setLoggedIn] = useState(false);
-  const handleLoggedIn = () => {
-    setLoggedIn(true)
-  }
+
   return (
     <Router>
       <Appbar loggedIn={loggedin} setlogin={setLoggedIn} />
       <Switch>
         <Route path="/login" exact>
-          <Login handleLog={handleLoggedIn} />
+          <Login handleLog={setLoggedIn} />
         </Route>
         <Route path="/register" exact>
           <Signup />
@@ -38,8 +38,14 @@ function App() {
         <Route path="/mainpage" exact>
           <Mainpage />
         </Route>
+        <Route path="/dashboard" exact>
+          <Dashboard />
+        </Route>
         <Route path="/shortener" exact>
           <UrlShortener />
+        </Route>
+        <Route path="/shorttable" exact>
+          <Shorttable />
         </Route>
         <Route path="/" exact>
           <Homepage />

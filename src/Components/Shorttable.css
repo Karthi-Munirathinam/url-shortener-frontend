@@ -1,0 +1,7 @@
+.fp-form-container .table-header {
+  background-color: rgb(255, 88, 88);
+}
+.fp-form-container .table-header .title-header {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}

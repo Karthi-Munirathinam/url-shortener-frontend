@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
 import '../App.css';
 import { useHistory } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -39,15 +40,23 @@ const useStyles = makeStyles((theme) => ({
 
 function Appbar({ loggedIn, setlogin }) {
     const classes = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const [loggedin, setLoggedin] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
     const history = useHistory();
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+    useEffect(() => {
+        let token = window.localStorage.getItem("app-token");
+        if (token) {
+            setLoggedin(true)
+        }else{
+            setLoggedin(false)
+        }
+    }, [loggedin])
     const handleLogOut = () => {
         window.localStorage.removeItem("app-token");
-        setlogin(false);
+        setLoggedin(false);
         history.push('/')
     }
     const handleMobileMenuClose = () => {
@@ -91,12 +100,21 @@ function Appbar({ loggedIn, setlogin }) {
             onClose={handleMobileMenuClose}
         >
             {
-                loggedIn ? (
+                loggedin ? (<span>
+                    <MenuItem>
+                        <Link to="/shortener" className={`${classes.link} text-decoration-none`}>
+                            <Button variant="contained" color="secondary" style={{ marginRight: "0.5rem" }}>
+                                Create
+                            </Button>
+                        </Link>
+                    </MenuItem>
                     <MenuItem>
                         <Button variant="contained" color="secondary" onClick={handleLogOut}>
                             Logout
                         </Button>
                     </MenuItem>
+                </span>
+
                 ) : (
                     <span>
                         <MenuItem>
@@ -130,10 +148,18 @@ function Appbar({ loggedIn, setlogin }) {
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop} >
                         {
-                            loggedIn ? (
-                                <Button variant="contained" color="secondary" onClick={handleLogOut}>
-                                    Logout
-                                </Button>
+                            loggedin ? (
+                                <span>
+                                    <Link to="/shortener" className={`${classes.link}  text-decoration-none`}>
+                                        <Button variant="contained" color="secondary" style={{ marginRight: "0.5rem" }}>
+                                            Create
+                                        </Button>
+                                    </Link>
+                                    <Button variant="contained" color="secondary" onClick={handleLogOut}>
+                                        Logout
+                                    </Button>
+                                </span>
+
                             ) : (
                                 <span>
                                     <Link to="/login" className={`${classes.link}  text-decoration-none`}>
@@ -149,11 +175,6 @@ function Appbar({ loggedIn, setlogin }) {
                                 </span>
                             )
                         }
-
-
-
-
-
                     </div>
                     <div className={classes.sectionMobile}>
                         <IconButton
