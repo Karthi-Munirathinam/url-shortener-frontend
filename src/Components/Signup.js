@@ -10,7 +10,8 @@ import Loading from './Loading';
 function Signup() {
     const [userexist, setuserexist] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const history = useHistory();
+    const [emailverification, setEmailVerification] = useState(false);
+    // const history = useHistory();
     const formik = useFormik({
         initialValues: {
             firstname: '',
@@ -58,7 +59,7 @@ function Signup() {
                     if (user.data.userexists) {
                         setuserexist(true);
                     } else {
-                        history.push('/login')
+                        setEmailVerification(true);
                     }
                 } catch (error) {
                     setIsLoading(false);
@@ -123,6 +124,13 @@ function Signup() {
                                         {userexist ? (<div>
                                             <div className="text-center mt-1" style={{ color: "crimson" }}>user already exists. try <Link to="/login" style={{ textDecoration: "none" }}>Login</Link></div>
                                         </div>) : null}
+                                        {
+                                            emailverification ? (
+                                                <div>
+                                                    <div className="text-center mt-1" style={{ color: "crimson" }}>Check your mail for account activation link.</div>
+                                                </div>
+                                            ) : null
+                                        }
                                     </div>
                                     <div className="row p-2">
                                         <div className="col-12 sign-in-btn-container">
