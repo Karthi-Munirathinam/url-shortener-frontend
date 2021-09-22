@@ -6,10 +6,10 @@ import { useFormik } from 'formik';
 import axios from './Connection';
 import validator from 'validator'
 import { useHistory } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
+import Loading from './Loading';
 
 function UrlShortener() {
-
+    const [isLoading, setIsLoading] = useState(false);
     const [fpsubmit, setFpsubmit] = useState(false);
     const history = useHistory();
     const formik = useFormik({
@@ -32,6 +32,7 @@ function UrlShortener() {
                     if (!token) {
                         history.push('/login')
                     }
+                    setIsLoading(true);
                     let data = await axios.post('/short', {
                         originalURL: values.Url
                     }, {
@@ -40,12 +41,15 @@ function UrlShortener() {
                             "Content-type": "application/json"
                         }
                     });
+
                     if (data.data.message === "Invalid Original Url") {
                         setFpsubmit(true)
                     } else {
                         history.push('/shorttable')
                     }
+                    setIsLoading(false);
                 } catch (error) {
+                    setIsLoading(false);
                     console.log(error);
                 }
             }
@@ -65,26 +69,30 @@ function UrlShortener() {
             className="container-lg mt-4">
             <div className="row fp-container">
                 <div className="fp-form-container col-12">
-                    <form onSubmit={formik.handleSubmit} method="post">
-                        <h5 className="text-center mb-4">Enter the URL with http(s)</h5>
-                        <div>
-                            <input type="text" name="Url" value={formik.values.Url} onChange={formik.handleChange} className="fp-email-input col-12" placeholder="Url" />
-                            {formik.errors.Url ? <div className="fp-errors col-12">{formik.errors.Url}</div> : null}
-                        </div>
-                        {
-                            fpsubmit ?
-                                (
-                                    <div className="text-center font-weight-light" style={{ fontSize: "0.8rem" }}>
-                                        <h3>Please Enter a valid Url</h3>
-                                    </div>
-                                )
-                                : null
-                        }
+                    {
+                        isLoading ? <Loading /> : (
+                            <form onSubmit={formik.handleSubmit} method="post">
+                                <h5 className="text-center mb-4">Enter the URL with http(s)</h5>
+                                <div>
+                                    <input type="text" name="Url" value={formik.values.Url} onChange={formik.handleChange} className="fp-email-input col-12" placeholder="Url" />
+                                    {formik.errors.Url ? <div className="fp-errors col-12">{formik.errors.Url}</div> : null}
+                                </div>
+                                {
+                                    fpsubmit ?
+                                        (
+                                            <div className="text-center font-weight-light" style={{ fontSize: "0.8rem" }}>
+                                                <h3>Please Enter a valid Url</h3>
+                                            </div>
+                                        )
+                                        : null
+                                }
 
-                        <div className="col-12 text-center mt-4">
-                            <input type="submit" value="create url shortener" className="btn fp-submit-btn" />
-                        </div>
-                    </form>
+                                <div className="col-12 text-center mt-4">
+                                    <input type="submit" value="create url shortener" className="btn fp-submit-btn" />
+                                </div>
+                            </form>
+                        )
+                    }
 
                 </div>
             </div>

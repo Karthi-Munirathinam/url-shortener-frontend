@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Appbar({ loggedIn, setlogin }) {
     const classes = useStyles();
-    const [loggedin, setLoggedin] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
     const history = useHistory();
@@ -49,15 +48,15 @@ function Appbar({ loggedIn, setlogin }) {
     useEffect(() => {
         let token = window.localStorage.getItem("app-token");
         if (token) {
-            setLoggedin(true)
-        }else{
-            setLoggedin(false)
+            setlogin(true);
+        } else {
+            setlogin(false);
         }
-    }, [loggedin])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     const handleLogOut = () => {
         window.localStorage.removeItem("app-token");
-        setLoggedin(false);
-        history.push('/')
+        history.push('/login')
     }
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
@@ -100,7 +99,21 @@ function Appbar({ loggedIn, setlogin }) {
             onClose={handleMobileMenuClose}
         >
             {
-                loggedin ? (<span>
+                loggedIn ? (<span>
+                    <MenuItem>
+                        <Link to="/shorttable" className={`${classes.link} text-decoration-none`}>
+                            <Button variant="contained" color="secondary" style={{ marginRight: "0.5rem" }}>
+                                All urls
+                            </Button>
+                        </Link>
+                    </MenuItem>
+                    <MenuItem>
+                        <Link to="/dashboard" className={`${classes.link} text-decoration-none`}>
+                            <Button variant="contained" color="secondary" style={{ marginRight: "0.5rem" }}>
+                                Dashboard
+                            </Button>
+                        </Link>
+                    </MenuItem>
                     <MenuItem>
                         <Link to="/shortener" className={`${classes.link} text-decoration-none`}>
                             <Button variant="contained" color="secondary" style={{ marginRight: "0.5rem" }}>
@@ -148,8 +161,18 @@ function Appbar({ loggedIn, setlogin }) {
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop} >
                         {
-                            loggedin ? (
+                            loggedIn ? (
                                 <span>
+                                    <Link to="/shorttable" className={`${classes.link}  text-decoration-none`}>
+                                        <Button variant="contained" color="secondary" style={{ marginRight: "0.5rem" }}>
+                                            All urls
+                                        </Button>
+                                    </Link>
+                                    <Link to="/dashboard" className={`${classes.link}  text-decoration-none`}>
+                                        <Button variant="contained" color="secondary" style={{ marginRight: "0.5rem" }}>
+                                            Dashboard
+                                        </Button>
+                                    </Link>
                                     <Link to="/shortener" className={`${classes.link}  text-decoration-none`}>
                                         <Button variant="contained" color="secondary" style={{ marginRight: "0.5rem" }}>
                                             Create

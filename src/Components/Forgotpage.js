@@ -5,9 +5,10 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import axios from './Connection';
 import { Link } from 'react-router-dom';
+import Loading from './Loading';
 
 function Forgotpage() {
-
+    const [isLoading, setIsLoading] = useState(false);
     const [fpsubmit, setFpsubmit] = useState(false);
     const [userexists, setUserExists] = useState(true);
     const formikemail = useFormik({
@@ -26,6 +27,7 @@ function Forgotpage() {
         onSubmit: (values) => {
             const forgotPasswordSubmit = async () => {
                 try {
+                    setIsLoading(true)
                     let data = await axios.post('/forgotpassword', {
                         email: values.email
                     });
@@ -34,7 +36,9 @@ function Forgotpage() {
                     } else if (data.data.exists) {
                         setFpsubmit(true);
                     }
+                    setIsLoading(false);
                 } catch (error) {
+                    setIsLoading(false);
                     console.log(error);
                 }
             }
@@ -55,34 +59,37 @@ function Forgotpage() {
             className="container-lg mt-4">
             <div className="row fp-container">
                 <div className="fp-form-container col-12">
-                    <form onSubmit={formikemail.handleSubmit} method="post">
-                        <h2 className="text-center mb-3">Forgot Password ?</h2>
-                        <h5 className="text-center mb-4">Enter your registered email to reset the password</h5>
-                        <div>
-                            <input type="email" name="email" value={formikemail.values.email} onChange={formikemail.handleChange} className="fp-email-input col-12" placeholder="email" />
-                            {formikemail.errors.email ? <div className="fp-errors col-12">{formikemail.errors.email}</div> : null}
-                        </div>
-                        {
-                            fpsubmit ?
-                                (
-                                    <div className="text-center font-weight-light" style={{ fontSize: "0.8rem" }}>
-                                        <h3>Check your mail for password reset link.</h3>
-                                    </div>
-                                )
-                                : null
-                        }
-                        {
-                            userexists ? null : (
-                                <div className="text-center font-weight-light">
-                                    <h3>User doesn't exist, please <Link to="/register" className="text-decoration-none">register</Link></h3>
+                    {
+                        isLoading ? <Loading /> : (
+                            <form onSubmit={formikemail.handleSubmit} method="post">
+                                <h2 className="text-center mb-3">Forgot Password ?</h2>
+                                <h5 className="text-center mb-4">Enter your registered email to reset the password</h5>
+                                <div>
+                                    <input type="email" name="email" value={formikemail.values.email} onChange={formikemail.handleChange} className="fp-email-input col-12" placeholder="email" />
+                                    {formikemail.errors.email ? <div className="fp-errors col-12">{formikemail.errors.email}</div> : null}
                                 </div>
-                            )
-                        }
-                        <div className="col-12 text-center mt-4">
-                            <input type="submit" value="Reset password" className="btn fp-submit-btn" />
-                        </div>
-                    </form>
-
+                                {
+                                    fpsubmit ?
+                                        (
+                                            <div className="text-center font-weight-light" style={{ fontSize: "0.8rem" }}>
+                                                <h3>Check your mail for password reset link.</h3>
+                                            </div>
+                                        )
+                                        : null
+                                }
+                                {
+                                    userexists ? null : (
+                                        <div className="text-center font-weight-light">
+                                            <h3>User doesn't exist, please <Link to="/register" className="text-decoration-none">register</Link></h3>
+                                        </div>
+                                    )
+                                }
+                                <div className="col-12 text-center mt-4">
+                                    <input type="submit" value="Reset password" className="btn fp-submit-btn" />
+                                </div>
+                            </form>
+                        )
+                    }
                 </div>
             </div>
         </motion.div>

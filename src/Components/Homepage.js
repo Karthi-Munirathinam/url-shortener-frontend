@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { motion } from 'framer-motion';
+import { useHistory } from 'react-router-dom';
 
 function Homepage() {
-
+    const history = useHistory()
+    useEffect(() => {
+        let token = window.localStorage.getItem("app-token");
+        if (token) {
+            history.push('/dashboard')
+        } else {
+            history.push('/login')
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     return (
         <motion.div
             key="login"
@@ -17,7 +27,7 @@ function Homepage() {
             <div className="row fp-container">
                 <div className="fp-form-container col-12">
                     <div>
-                        <h5>Forgot password homepage</h5>
+                        <h5>Url shortener homepage</h5>
                     </div>
                 </div>
             </div>
