@@ -38,7 +38,6 @@ function Homepage() {
                             </div>
                         )
                     }
-
                 </div>
             </div>
         </motion.div >

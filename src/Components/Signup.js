@@ -3,7 +3,7 @@ import './Register.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import axios from './Connection';
 import Loading from './Loading';
 

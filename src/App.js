@@ -15,6 +15,7 @@ import Mainpage from './Components/Mainpage';
 import UrlShortener from './Components/UrlShortener';
 import Shorttable from './Components/Shorttable';
 import Dashboard from './Components/Dashboard';
+import Redirects from './Components/Redirects';
 
 function App() {
   const [loggedin, setLoggedIn] = useState(false);
@@ -49,6 +50,9 @@ function App() {
         </Route>
         <Route path="/" exact>
           <Homepage />
+        </Route>
+        <Route path="/:urlID" >
+          <Redirects />
         </Route>
       </Switch>
     </Router>
