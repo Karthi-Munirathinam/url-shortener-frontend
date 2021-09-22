@@ -35,7 +35,7 @@ function App() {
         <Route path="/reset-password" exact>
           <Forgotpageresetpassword />
         </Route>
-        <Route path="/mainpage" exact>
+        <Route path="/activate-account" exact>
           <Mainpage />
         </Route>
         <Route path="/dashboard" exact>

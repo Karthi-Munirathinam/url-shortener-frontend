@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Appbar({ loggedIn, setlogin }) {
     const classes = useStyles();
+    // const [loggedin, setLoggedin] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
     const history = useHistory();
@@ -49,13 +50,17 @@ function Appbar({ loggedIn, setlogin }) {
         let token = window.localStorage.getItem("app-token");
         if (token) {
             setlogin(true);
+            // setLoggedin(true);
         } else {
             setlogin(false);
+            // setLoggedin(false);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const handleLogOut = () => {
         window.localStorage.removeItem("app-token");
+        // setLoggedin(false);
+        setlogin(false);
         history.push('/login')
     }
     const handleMobileMenuClose = () => {

@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import axios from './Connection';
 import { motion } from 'framer-motion';
-
+import Loading from './Loading';
+import { Link, useLocation } from 'react-router-dom';
+// import { useHistory, } from 'react-router-dom';
+const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+}
 function Mainpage() {
     const [user, setUser] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    let query = useQuery();
     useEffect(() => {
-        const getdata = async () => {
-            let token = window.localStorage.getItem("app-token");
-            let data = await axios.get('/user', {
-                headers: {
-                    "authorization": token,
-                    "Content-type": "application/json"
-                }
-            })
-            setUser(data.data[0].firstName)
+        const checkQuery = async () => {
+            try {
+                setIsLoading(true);
+                let data = await axios.post('/activateaccount', {
+                    tk: query.get("tk")
+                })
+                setUser(data.data.username)
+                setIsLoading(false);
+            } catch (error) {
+                setIsLoading(false);
+                console.log(error)
+            }
         }
-        getdata();
+        checkQuery()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -31,9 +42,14 @@ function Mainpage() {
             className="container-lg mt-4">
             <div className="row fp-container">
                 <div className="fp-form-container col-12">
-                    <div>
-                        <h3>Hi {user} , Welcome to the UserPage</h3>
-                    </div>
+                    {
+                        isLoading ? <Loading /> : (
+                            <div>
+                                <h3>Hi {user} , Welcome to the URLShortener</h3>
+                                <h4><Link to="/login">Login</Link> to continue!</h4>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </motion.div >
