@@ -63,6 +63,7 @@ function Forgotpageresetpassword() {
                         password: values.password
                     });
                     setPasswordChanged(true);
+                    window.alert('Password changed successfully!');
                     history.push('/login')
                     setIsLoading(false);
                 } catch (error) {
